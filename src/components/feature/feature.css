@@ -43,6 +43,7 @@
   font-size: 14px;
   line-height: 24px;
   color: var(--color-text);
+  padding-right: 5rem;
 }
 
 @media screen and (max-width: 550px) {
