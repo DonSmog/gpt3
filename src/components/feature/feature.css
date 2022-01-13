@@ -60,4 +60,8 @@
   .gpt3__features-container__feature {
     margin: 1rem 0;
   }
+
+  .gpt3__features-container_feature-text p {
+    padding-right: 0;
+  }
 }
