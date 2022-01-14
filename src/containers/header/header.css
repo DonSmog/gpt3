@@ -1,5 +1,6 @@
 .gpt3__header {
   display: flex;
+  margin-top: 2rem;
 }
 
 .gpt3__header-content {
@@ -113,6 +114,9 @@
 }
 
 @media screen and (max-width: 650px) {
+  .gpt3__header {
+    margin-top: 0;
+  }
   .gpt3__header h1 {
     font-size: 48px;
     line-height: 60px;
