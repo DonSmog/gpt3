@@ -49,6 +49,7 @@
 
 .gpt3__whatgpt3-feature {
   display: flex;
+  margin-top: 2rem;
 }
 
 /* Customizing feature component as per needs */
