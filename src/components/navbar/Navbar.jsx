@@ -1,30 +1,64 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "./navbar.css";
 import { RiMenu3Line, RiCloseLine } from "react-icons/ri";
 import logo from "../../assets/logo.svg";
 
-const Menu = () => (
+const Menu = ({ onClick }) => (
   <>
     <p>
-      <a href="#home">Home</a>
+      <a href="#home" onClick={onClick}>
+        Home
+      </a>
     </p>
     <p>
-      <a href="#wgpt3">What is GPT3?</a>
+      <a href="#wgpt3" onClick={onClick}>
+        What is GPT3?
+      </a>
     </p>
     <p>
-      <a href="#possibilities">Open AI</a>
+      <a href="#possibilities" onClick={onClick}>
+        Open AI
+      </a>
     </p>
     <p>
-      <a href="#features">Case Studies</a>
+      <a href="#features" onClick={onClick}>
+        Case Studies
+      </a>
     </p>
     <p>
-      <a href="#blog">Library</a>
+      <a href="#blog" onClick={onClick}>
+        Library
+      </a>
     </p>
   </>
 );
 
 const Navbar = () => {
   const [toggleMenu, setToggleMenu] = useState(false);
+
+  const ref = useRef();
+
+  useEffect(() => {
+    const handleClick = (e) => {
+      if (toggleMenu && ref.current && !ref.current.contains(e.target)) {
+        setToggleMenu(false);
+      }
+    };
+
+    document.addEventListener("click", handleClick);
+
+    return () => {
+      document.removeEventListener("click", handleClick);
+    };
+  }, [toggleMenu]);
+
+  const handleOnClick = (e) => {
+    if (e.target !== ref.current) {
+      setToggleMenu(false);
+    } else {
+      setToggleMenu(!toggleMenu);
+    }
+  };
 
   return (
     <div className="gpt3__navbar gradient__bg">
@@ -59,12 +93,22 @@ const Navbar = () => {
           />
         )}
         {toggleMenu && (
-          <div className="gpt3__navbar-menu_container scale-up-center">
+          <div
+            className="gpt3__navbar-menu_container scale-up-center"
+            ref={ref}
+          >
             <div className="gpt3__navbar-menu_container-links">
-              <Menu />
-              <div className="gpt3__navbar-menu_container-links-sign">
-                <p>Sign In</p>
-                <button type="button">Sign Up</button>
+              <Menu onClick={handleOnClick} />
+              <div
+                className="gpt3__navbar-menu_container-links-sign"
+                onClick={handleOnClick}
+              >
+                <p>
+                  <a href="/#">Sign In</a>
+                </p>
+                <button type="button">
+                  <a href="/#">Sign Up</a>
+                </button>
               </div>
             </div>
           </div>
