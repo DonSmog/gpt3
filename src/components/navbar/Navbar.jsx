@@ -35,8 +35,25 @@ const Menu = ({ onClick }) => (
 
 const Navbar = () => {
   const [toggleMenu, setToggleMenu] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   const ref = useRef();
+
+  const handleOnClick = (e) => {
+    if (e.target !== ref.current) {
+      setToggleMenu(false);
+    } else {
+      setToggleMenu(!toggleMenu);
+    }
+  };
+
+  const handleScroll = () => {
+    if (window.scrollY > 150) {
+      setScrolled(true);
+    } else {
+      setScrolled(false);
+    }
+  };
 
   useEffect(() => {
     const handleClick = (e) => {
@@ -52,16 +69,17 @@ const Navbar = () => {
     };
   }, [toggleMenu]);
 
-  const handleOnClick = (e) => {
-    if (e.target !== ref.current) {
-      setToggleMenu(false);
-    } else {
-      setToggleMenu(!toggleMenu);
-    }
-  };
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+  });
+
+  let navbarClasses = ["gpt3__navbar"];
+  if (scrolled) {
+    navbarClasses.push("scrolled");
+  }
 
   return (
-    <div className="gpt3__navbar gradient__bg">
+    <div className={navbarClasses.join(" ")}>
       <div className="gpt3__navbar-links">
         <div className="gpt3__navbar-links_logo">
           <a href="/#">
