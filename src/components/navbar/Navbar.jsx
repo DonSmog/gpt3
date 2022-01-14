@@ -27,10 +27,12 @@ const Navbar = () => {
   const [toggleMenu, setToggleMenu] = useState(false);
 
   return (
-    <div className="gpt3__navbar">
+    <div className="gpt3__navbar gradient__bg">
       <div className="gpt3__navbar-links">
         <div className="gpt3__navbar-links_logo">
-          <img src={logo} alt="logo" />
+          <a href="/#">
+            <img src={logo} alt="logo" />
+          </a>
         </div>
         <div className="gpt3__navbar-links_container">
           <Menu />

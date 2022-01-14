@@ -46,6 +46,11 @@
   padding-right: 5rem;
 }
 
+@media screen and (max-width: 990px) {
+  .gpt3__features-container_feature-text p {
+    padding-right: 0;
+  }
+}
 @media screen and (max-width: 550px) {
   .gpt3__features-container__feature-title h1 {
     font-size: 14px;
